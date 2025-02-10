@@ -1,0 +1,48 @@
+name: fitlover_mvps
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  firebase_core: 2.25.2
+  firebase_auth: 4.15.2
+  sign_in_with_apple: ^3.0.0 # für Apple Login
+  google_sign_in: ^5.2.1 # für Google Login
+  flutter_facebook_auth: ^5.0.0 # für Facebook Login
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/6666.png" # Stelle sicher, dass das Icon hier gespeichert ist
+  adaptive_icon_background: "#ffffff" # Optional für Android Adaptive Icons
+  adaptive_icon_foreground: "assets/6666.png" # Optional für Android Adaptive Icons
+
+flutter:
+  uses-material-design: true
+
+  assets:
+  - assets/Bank.jpeg
+  - assets/Bein.jpeg
+  - assets/Bizeps.jpeg
+  - assets/dips.jpeg
+  - assets/Klimm.jpeg
+  - assets/kmie.png
+  - assets/Kreuz.jpeg
+  - assets/Schulter.jpeg
+  - assets/FitLoverIcon.jpg
+  - assets/5555.png
+  - assets/2222.png
+  - assets/3333.png
+  - assets/4444.png
+  - assets/6666.png

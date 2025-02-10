@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "812454961165",
+    "project_id": "fitloverapp",
+    "storage_bucket": "fitloverapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812454961165:android:1bfdb14d87f13c6fe17544",
+        "android_client_info": {
+          "package_name": "com.example.fitlover_mvps"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB969cCQb8ijY5dkXYbCAAF0nNELQONgSI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
