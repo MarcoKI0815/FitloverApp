@@ -1,0 +1,24 @@
+import 'dart:io';
+
+void main() async {
+  print("🔍 Generiere SHA-1 Fingerprint für deine Flutter App...");
+
+  ProcessResult result = await Process.run(
+    './gradlew',
+    ['signingReport'],
+    workingDirectory: 'android',
+    runInShell: true,
+  );
+
+  String output = result.stdout.toString();
+  RegExp regex = RegExp(r'SHA1:\s*([A-F0-9:]+)', caseSensitive: false);
+  Match? match = regex.firstMatch(output);
+
+  if (match != null) {
+    String sha1 = match.group(1)!;
+    print("✅ SHA-1 gefunden: $sha1");
+    print("📌 Jetzt in Firebase hinterlegen: https://console.firebase.google.com/");
+  } else {
+    print("❌ Fehler: SHA-1 konnte nicht extrahiert werden.");
+  }
+}

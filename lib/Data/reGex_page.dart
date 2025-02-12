@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -9,34 +9,32 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class SignUpScreenState extends State<SignUpScreen> {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final confirmPasswordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController ageController = TextEditingController();
+
   bool loading = false;
   String? errorMessage;
   bool _isObscure = true;
-  bool _isConfirmObscure = true;
 
-  // Deklaration der Eingabedekoration
-  InputDecoration inputDecoration(String labelText, {Widget? suffixIcon}) {
-    return InputDecoration(
-      labelText: labelText,
-      labelStyle: const TextStyle(color: Colors.white),
-      enabledBorder: const OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.white),
-      ),
-      focusedBorder: const OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.blueAccent),
-      ),
-      suffixIcon: suffixIcon,
-    );
+  final RegExp emailRegex = RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+  final RegExp passwordRegex = RegExp(r"^(?=.*[A-Z])(?=.*\d)(?=.*[!@#\$%^&*]).{8,}$");
+  
+  bool isValidAge(String age) {
+    return RegExp(r"^[1-9][0-9]?$|^100$").hasMatch(age);
   }
 
   Future<void> register() async {
-    if (passwordController.text != confirmPasswordController.text) {
-      setState(() {
-        errorMessage = "Passwords do not match";
-      });
+    if (!emailRegex.hasMatch(emailController.text)) {
+      setState(() => errorMessage = "Ungültige E-Mail-Adresse.");
+      return;
+    }
+    if (!passwordRegex.hasMatch(passwordController.text)) {
+      setState(() => errorMessage = "Passwort zu schwach: Mind. 8 Zeichen, 1 Großbuchstabe, 1 Zahl, 1 Sonderzeichen.");
+      return;
+    }
+    if (!isValidAge(ageController.text)) {
+      setState(() => errorMessage = "Alter muss zwischen 10 und 100 Jahren liegen.");
       return;
     }
 
@@ -51,7 +49,6 @@ class SignUpScreenState extends State<SignUpScreen> {
         password: passwordController.text.trim(),
       );
 
-      // Erfolgreiche Registrierung -> Zur Startseite weiterleiten
       Navigator.pushReplacementNamed(context, "/home");
     } on FirebaseAuthException catch (e) {
       setState(() {
@@ -96,7 +93,7 @@ class SignUpScreenState extends State<SignUpScreen> {
             children: <Widget>[
               const Text(
                 "Create an Account",
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 5, 5, 5)),
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
               ),
               const SizedBox(height: 20),
               TextField(
@@ -122,29 +119,15 @@ class SignUpScreenState extends State<SignUpScreen> {
               ),
               const SizedBox(height: 16),
               TextField(
-                controller: confirmPasswordController,
-                obscureText: _isConfirmObscure,
-                decoration: inputDecoration(
-                  "Confirm Password",
-                  suffixIcon: IconButton(
-                    icon: Icon(_isConfirmObscure ? Icons.visibility : Icons.visibility_off, color: Colors.white),
-                    onPressed: () {
-                      setState(() {
-                        _isConfirmObscure = !_isConfirmObscure;
-                      });
-                    },
-                  ),
-                ),
+                controller: ageController,
+                keyboardType: TextInputType.number,
+                decoration: inputDecoration("Age"),
               ),
               const SizedBox(height: 24),
-              // Error message angezeigt, wenn vorhanden
               if (errorMessage != null)
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16.0),
-                  child: Text(
-                    errorMessage!,
-                    style: const TextStyle(color: Colors.red),
-                  ),
+                  child: Text(errorMessage!, style: const TextStyle(color: Colors.red)),
                 ),
               SizedBox(
                 width: double.infinity,
@@ -175,4 +158,15 @@ class SignUpScreenState extends State<SignUpScreen> {
       ),
     );
   }
-}
+
+  InputDecoration inputDecoration(String label, {Widget? suffixIcon}) {
+    return InputDecoration(
+      labelText: label,
+      labelStyle: const TextStyle(color: Colors.white),
+      filled: true,
+      fillColor: Colors.white.withOpacity(0.1),
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+      suffixIcon: suffixIcon,
+    );
+  }
+}*/

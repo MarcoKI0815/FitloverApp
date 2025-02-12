@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 
 class ExercisesPage extends StatefulWidget {
   final Function(Map<String, String>) onFavoriteToggle;
+  final Function(Map<String, String>) onAddCustomExercise;
 
-  const ExercisesPage({super.key, required this.onFavoriteToggle});
+  const ExercisesPage({
+    super.key,
+    required this.onFavoriteToggle,
+    required this.onAddCustomExercise,
+  });
 
   @override
   ExercisesPageState createState() => ExercisesPageState();
@@ -22,6 +27,8 @@ class ExercisesPageState extends State<ExercisesPage> {
   ];
 
   final Set<String> favoriteExercises = {};
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController imageController = TextEditingController();
 
   void toggleFavorite(Map<String, String> exercise) {
     setState(() {
@@ -34,6 +41,21 @@ class ExercisesPageState extends State<ExercisesPage> {
     widget.onFavoriteToggle(exercise);
   }
 
+  void addCustomExercise() {
+    if (nameController.text.isNotEmpty && imageController.text.isNotEmpty) {
+      setState(() {
+        final customExercise = {
+          'name': nameController.text,
+          'image': imageController.text,
+        };
+        exercises.add(customExercise);
+        widget.onAddCustomExercise(customExercise); // Hinzufügen der benutzerdefinierten Übung
+      });
+      nameController.clear();
+      imageController.clear();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,15 +64,48 @@ class ExercisesPageState extends State<ExercisesPage> {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.pop(context), // Zurück zur vorherigen Seite
+          onPressed: () => Navigator.pop(context),
         ),
       ),
-      body: SingleChildScrollView( // Wrapper für Scrollbarkeit
+      body: SingleChildScrollView(
         child: Column(
           children: [
+            // Formular für eigene Übung hinzufügen
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  TextField(
+                    controller: nameController,
+                    decoration: const InputDecoration(
+                      labelText: "Übung Name",
+                      labelStyle: TextStyle(color: Colors.white),
+                      filled: true,
+                      fillColor: Colors.blueGrey,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  TextField(
+                    controller: imageController,
+                    decoration: const InputDecoration(
+                      labelText: "Bild URL",
+                      labelStyle: TextStyle(color: Colors.white),
+                      filled: true,
+                      fillColor: Colors.blueGrey,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  ElevatedButton(
+                    onPressed: addCustomExercise,
+                    child: const Text("Eigene Übung hinzufügen"),
+                  ),
+                ],
+              ),
+            ),
+            // Liste der Übungen
             ListView.builder(
-              shrinkWrap: true,  // Verhindert, dass die ListView den gesamten verfügbaren Raum einnimmt
-              physics: NeverScrollableScrollPhysics(), // Deaktiviert das eigene Scrollen der ListView
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: exercises.length,
               itemBuilder: (context, index) {
                 final exercise = exercises[index];

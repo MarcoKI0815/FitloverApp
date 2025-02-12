@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 import 'Screens/Login_pages/create_account_page.dart';
 import 'package:fitlover_mvps/Screens/Pages/splash_page.dart';
 import 'package:fitlover_mvps/main_app.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // Stellt sicher, dass Firebase korrekt initialisiert wird
+  await Firebase.initializeApp();
   runApp(const FitLoverApp());
 }
 
@@ -25,6 +30,21 @@ class FitLoverApp extends StatelessWidget {
         '/login': (context) => const LoginPage(),
         '/home': (context) => const MainApp(), // Home page after login
       },
+    );
+  }
+}
+
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'FitLover',
+      theme: ThemeData.dark(),
+      home: const SignUpScreen(),
     );
   }
 }

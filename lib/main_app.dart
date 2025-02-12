@@ -5,7 +5,6 @@ import 'package:fitlover_mvps/Screens/Pages/home_page.dart';
 import 'package:fitlover_mvps/Screens/Pages/settings_page.dart';
 import 'package:fitlover_mvps/Screens/Pages/workout_page.dart';
 
-
 class MainApp extends StatefulWidget {
   const MainApp({super.key});
 
@@ -15,8 +14,7 @@ class MainApp extends StatefulWidget {
 
 class MainAppState extends State<MainApp> {
   int selectedIndex = 0;
-
-  List<Map<String, String>> favoriteExercises = [];
+  List<Map<String, String>> favoriteExercises = []; // Liste für Favoriten
   late List<Widget> pages;
 
   @override
@@ -24,12 +22,16 @@ class MainAppState extends State<MainApp> {
     super.initState();
     pages = [
       const HomePage(),
-      ExercisesPage(onFavoriteToggle: updateFavorites),
-      WorkoutPage(favoriteExercises: favoriteExercises),
+      ExercisesPage(
+        onFavoriteToggle: updateFavorites,
+        onAddCustomExercise: addCustomExercise, // Hinzufügen von eigenen Übungen
+      ),
+      WorkoutPage(favoriteExercises: favoriteExercises, onWorkoutComplete: () {  },), // Übergabe der Favoriten
       const SettingsPage(),
     ];
   }
 
+  // Favoriten aktualisieren
   void updateFavorites(Map<String, String> exercise) {
     setState(() {
       if (favoriteExercises.any((e) => e["name"] == exercise["name"])) {
@@ -37,6 +39,13 @@ class MainAppState extends State<MainApp> {
       } else {
         favoriteExercises.add(exercise);
       }
+    });
+  }
+
+  // Eigene Übung hinzufügen
+  void addCustomExercise(Map<String, String> exercise) {
+    setState(() {
+      favoriteExercises.add(exercise); // Benutzerdefinierte Übung zu den Favoriten hinzufügen
     });
   }
 

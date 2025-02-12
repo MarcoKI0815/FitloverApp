@@ -11,7 +11,7 @@ dependencies:
     sdk: flutter
   firebase_core: 2.25.2
   firebase_auth: 4.15.2
-  sign_in_with_apple: ^3.0.0 # für Apple Login
+  sign_in_with_apple: ^5.0.0 # für Apple Login
   google_sign_in: ^5.2.1 # für Google Login
   flutter_facebook_auth: ^5.0.0 # für Facebook Login
 

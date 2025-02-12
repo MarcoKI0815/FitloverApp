@@ -1,3 +1,4 @@
+import 'package:fitlover_mvps/Bottons/random_workout_button.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -13,7 +14,9 @@ class HomePage extends StatelessWidget {
             'assets/5555.png', 
             fit: BoxFit.cover,
           ),
-
+          Center(
+            child: RandomWorkoutButton(),
+          ),
         ],
       ),
     );
