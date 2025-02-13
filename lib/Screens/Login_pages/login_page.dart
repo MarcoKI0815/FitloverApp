@@ -12,7 +12,8 @@ class FitLoverLogin extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: const Color(0xFF102E69), // Dunkelblauer Hintergrund
+        scaffoldBackgroundColor:
+            const Color.fromARGB(255, 30, 48, 87), // Dunkelblauer Hintergrund
       ),
       home: const LoginPage(),
     );
@@ -52,7 +53,10 @@ class _LoginPageState extends State<LoginPage> {
             const Center(
               child: Text(
                 "Welcome back!",
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
+                style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
             ),
             const SizedBox(height: 20),
@@ -88,20 +92,23 @@ class _LoginPageState extends State<LoginPage> {
                   Navigator.pushReplacementNamed(context, "/home");
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blueAccent,
+                  backgroundColor: Color.fromARGB(255, 71, 175, 235),
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                child: const Text("Sign In", style: TextStyle(fontSize: 16)),
+                child: const Text("Sign In",
+                    style: TextStyle(fontSize: 20, color: Colors.white)),
               ),
             ),
             const SizedBox(height: 20),
             Center(
               child: TextButton(
-                onPressed: () => Navigator.pushReplacementNamed(context, "/signup"),
-                child: const Text("Don't have an account? Sign up", style: TextStyle(color: Colors.white)),
+                onPressed: () =>
+                    Navigator.pushReplacementNamed(context, "/signup"),
+                child: const Text("Don't have an account? Sign up",
+                    style: TextStyle(color: Colors.white)),
               ),
             ),
           ],

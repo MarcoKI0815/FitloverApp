@@ -24,9 +24,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/6666.png" # Stelle sicher, dass das Icon hier gespeichert ist
-  adaptive_icon_background: "#ffffff" # Optional für Android Adaptive Icons
-  adaptive_icon_foreground: "assets/6666.png" # Optional für Android Adaptive Icons
+  image_path: "assets/1111.png" # Stelle sicher, dass das Icon hier gespeichert ist
 
 flutter:
   uses-material-design: true
@@ -41,8 +39,5 @@ flutter:
   - assets/Kreuz.jpeg
   - assets/Schulter.jpeg
   - assets/FitLoverIcon.jpg
-  - assets/5555.png
-  - assets/2222.png
-  - assets/3333.png
-  - assets/4444.png
-  - assets/6666.png
+  - assets/1111.png
+  - assets/SplashScreenFitlover.png

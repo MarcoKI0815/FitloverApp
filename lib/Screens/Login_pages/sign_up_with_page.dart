@@ -13,7 +13,10 @@ class WelcomeScreen extends StatelessWidget {
   Future<void> signInWithApple() async {
     try {
       final appleCredential = await SignInWithApple.getAppleIDCredential(
-        scopes: [AppleIDAuthorizationScopes.email, AppleIDAuthorizationScopes.fullName],
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName
+        ],
       );
 
       final oauthCredential = OAuthProvider("apple.com").credential(
@@ -33,7 +36,8 @@ class WelcomeScreen extends StatelessWidget {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
       if (googleUser == null) return; // Abbruch, falls User den Login abbricht
 
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
@@ -50,7 +54,8 @@ class WelcomeScreen extends StatelessWidget {
     try {
       final LoginResult result = await FacebookAuth.instance.login();
       if (result.status == LoginStatus.success) {
-        final OAuthCredential credential = FacebookAuthProvider.credential(result.accessToken!.token);
+        final OAuthCredential credential =
+            FacebookAuthProvider.credential(result.accessToken!.token);
         await FirebaseAuth.instance.signInWithCredential(credential);
       } else {
         debugPrint("Facebook Sign-In abgebrochen");
@@ -64,7 +69,10 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Welcome"),
+        title: const Text(
+          "Welcome",
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Navigator.canPop(context) ? const BackButton() : null,
@@ -79,7 +87,7 @@ class WelcomeScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
-                color: Colors.lightBlueAccent,
+                color: Colors.white,
               ),
             ),
             const SizedBox(height: 24),

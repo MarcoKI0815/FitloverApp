@@ -5,10 +5,9 @@ import 'package:fitlover_mvps/Screens/Pages/splash_page.dart';
 import 'package:fitlover_mvps/main_app.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-
-
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // Stellt sicher, dass Firebase korrekt initialisiert wird
+  WidgetsFlutterBinding
+      .ensureInitialized(); // Stellt sicher, dass Firebase korrekt initialisiert wird
   await Firebase.initializeApp();
   runApp(const FitLoverApp());
 }
@@ -21,7 +20,7 @@ class FitLoverApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: const Color(0xFF102E69),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 30, 48, 87),
       ),
       initialRoute: '/', // Initial route for app launch
       routes: {
@@ -33,7 +32,6 @@ class FitLoverApp extends StatelessWidget {
     );
   }
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

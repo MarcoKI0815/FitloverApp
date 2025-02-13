@@ -28,8 +28,8 @@ class SplashScreenState extends State<SplashScreen> {
         fit: StackFit.expand,
         children: [
           Image.asset(
-            'assets/5555.png', // Hintergrundbild für den Splash-Screen
-            fit: BoxFit.cover,
+            'assets/SplashScreenFitlover.png', // Hintergrundbild für den Splash-Screen
+            fit: BoxFit.none,
           ),
         ],
       ),

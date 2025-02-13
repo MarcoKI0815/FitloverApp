@@ -11,11 +11,16 @@ class HomePage extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           Image.asset(
-            'assets/5555.png', 
+            'assets/SplashScreenFitlover.png', 
             fit: BoxFit.cover,
           ),
-          Center(
-            child: RandomWorkoutButton(),
+          Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                  children:[
+                      Center(  
+                        child: RandomWorkoutButton(),
+              ),
+            ],
           ),
         ],
       ),

@@ -9,6 +9,7 @@ class SettingsPage extends StatelessWidget {
       length: 2, // Anzahl der Tabs (z.B. Sprache und Passwort ändern)
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 30, 48, 87),
           title: const Text('Einstellungen'),
           bottom: const TabBar(
             tabs: [
