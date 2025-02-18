@@ -19,8 +19,7 @@ class ExercisesPageState extends State<ExercisesPage> {
     {
       "name": "Bankdrücken",
       "image": "assets/Bank.jpeg",
-      "description": "Eine der besten Übungen für die Brustmuskulatur."
-    },
+      "description": "Eine der besten Übungen für die Brustmuskulatur.",},
     {
       "name": "Kniebeugen",
       "image": "assets/kmie.png",
@@ -105,9 +104,10 @@ class ExercisesPageState extends State<ExercisesPage> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-            child: const Text("Schließen",
+              child: const Text(
+                "Schließen",
                 style: TextStyle(color: Color.fromARGB(255, 71, 175, 235)),
-            ),
+              ),
             ),
           ],
         );
@@ -123,9 +123,8 @@ class ExercisesPageState extends State<ExercisesPage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.pop(context),
-        ),
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.pop(context)),
       ),
       body: SingleChildScrollView(
         child: Column(

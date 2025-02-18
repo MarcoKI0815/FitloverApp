@@ -1,48 +1,25 @@
-import 'package:fitlover_mvps/Screens/Login_pages/login_page.dart';
+import 'package:fitlover_mvps/domain/workout.dart';
 import 'package:flutter/material.dart';
-import 'Screens/Login_pages/create_account_page.dart';
-import 'package:fitlover_mvps/Screens/Pages/splash_page.dart';
-import 'package:fitlover_mvps/main_app.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:fitlover_mvps/Data/database_repository.dart';
+import 'package:fitlover_mvps/Data/mockDatabase.dart';
+import 'package:fitlover_mvps/Widgets/my_app.dart'; 
+
+
 
 void main() async {
-  WidgetsFlutterBinding
-      .ensureInitialized(); // Stellt sicher, dass Firebase korrekt initialisiert wird
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const FitLoverApp());
-}
 
-class FitLoverApp extends StatelessWidget {
-  const FitLoverApp({super.key});
+  // Entscheide, ob Mock- oder Firebase-Datenbank verwendet wird
+  final DatabaseRepository database;
+  bool useMock = true; // Setze auf false, um Firebase zu nutzen
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: const Color.fromARGB(255, 30, 48, 87),
-      ),
-      initialRoute: '/', // Initial route for app launch
-      routes: {
-        '/': (context) => const SplashScreen(), // Initial splash screen
-        '/signup': (context) => const SignUpScreen(),
-        '/login': (context) => const LoginPage(),
-        '/home': (context) => const MainApp(), // Home page after login
-      },
-    );
-  }
-}
+  database = MockDatabaseRepository(); 
+database.addWorkout(Workout("Bankdrücken", "assets/Bank.jpeg",
+        "Eine der besten Übungen für die Brustmuskulatur."));
+    
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'FitLover',
-      theme: ThemeData.dark(),
-      home: const SignUpScreen(),
-    );
-  }
+  // Starte die App und übergebe den `database`-Parameter
+  runApp(MyApp(database: database)); // Übergabe des Parameters
 }

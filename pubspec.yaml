@@ -9,11 +9,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  firebase_core: 2.25.2
+  firebase_core: ^2.32.0
   firebase_auth: 4.15.2
   sign_in_with_apple: ^5.0.0 # für Apple Login
   google_sign_in: ^5.2.1 # für Google Login
   flutter_facebook_auth: ^5.0.0 # für Facebook Login
+  cloud_firestore: ^4.17.5
 
 dev_dependencies:
   flutter_test:
