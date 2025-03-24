@@ -7,7 +7,7 @@ class SettingsPage extends StatelessWidget {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text("Navigating to $title")),
     );
-    // Hier kannst du Navigator.push() verwenden, um zu echten Seiten zu navigieren.
+    //  Navigator.push() verwenden, um zu echten Seiten zu navigieren.
   }
 
   @override

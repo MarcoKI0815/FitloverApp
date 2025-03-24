@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'screens/login/login_page.dart';
 import 'screens/login/create_account_page.dart';
 import 'screens/Pages/splash_page.dart';
-import 'main_app.dart';
+import 'Main/main_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,6 +19,8 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
