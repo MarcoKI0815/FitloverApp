@@ -55,7 +55,11 @@ class WelcomeScreen extends StatelessWidget {
       final LoginResult result = await FacebookAuth.instance.login();
       if (result.status == LoginStatus.success) {
         final OAuthCredential credential =
+<<<<<<< HEAD:lib/screens/login/sign_up_with_page.dart
             FacebookAuthProvider.credential(result.accessToken!.tokenString);
+=======
+            FacebookAuthProvider.credential(result.accessToken!.token);
+>>>>>>> origin/main:lib/Screens/Login_pages/sign_up_with_page.dart
         await FirebaseAuth.instance.signInWithCredential(credential);
       } else {
         debugPrint("Facebook Sign-In abgebrochen");
@@ -69,6 +73,13 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+<<<<<<< HEAD:lib/screens/login/sign_up_with_page.dart
+=======
+        title: const Text(
+          "Welcome",
+          style: TextStyle(color: Colors.white),
+        ),
+>>>>>>> origin/main:lib/Screens/Login_pages/sign_up_with_page.dart
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Navigator.canPop(context) ? const BackButton() : null,
@@ -89,6 +100,10 @@ class WelcomeScreen extends StatelessWidget {
                 fontSize: 30,
                 fontStyle: FontStyle.italic,
                 fontWeight: FontWeight.bold,
+<<<<<<< HEAD:lib/screens/login/sign_up_with_page.dart
+=======
+                color: Colors.white,
+>>>>>>> origin/main:lib/Screens/Login_pages/sign_up_with_page.dart
               ),
             ),
             const SizedBox(height: 15),

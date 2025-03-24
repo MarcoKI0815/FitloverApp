@@ -26,7 +26,11 @@ class _WorkoutPageState extends State<WorkoutPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+<<<<<<< HEAD:lib/screens/workout_page.dart
           backgroundColor: Color.fromARGB(255, 10, 20, 46),
+=======
+          backgroundColor: Color.fromARGB(255, 30, 48, 87),
+>>>>>>> origin/main:lib/Screens/Pages/workout_page.dart
           title: const Text("Dein Workout")),
       body: Column(
         children: [
