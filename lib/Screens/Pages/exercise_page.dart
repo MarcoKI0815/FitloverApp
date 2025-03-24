@@ -19,12 +19,8 @@ class ExercisesPageState extends State<ExercisesPage> {
     {
       "name": "Bankdrücken",
       "image": "assets/Bank.jpeg",
-<<<<<<< HEAD:lib/screens/exercise_page.dart
       "description": "Eine der besten Übungen für die Brustmuskulatur."
     },
-=======
-      "description": "Eine der besten Übungen für die Brustmuskulatur.",},
->>>>>>> origin/main:lib/Screens/Pages/exercise_page.dart
     {
       "name": "Kniebeugen",
       "image": "assets/kmie.png",
@@ -136,38 +132,6 @@ class ExercisesPageState extends State<ExercisesPage> {
           children: [
             Padding(
               padding: const EdgeInsets.all(16.0),
-<<<<<<< HEAD:lib/screens/exercise_page.dart
-=======
-              child: Column(
-                children: [
-                  TextField(
-                    controller: nameController,
-                    decoration: const InputDecoration(
-                      labelText: "Übung Name",
-                      labelStyle: TextStyle(color: Colors.white),
-                      filled: true,
-                      fillColor: Color.fromARGB(255, 58, 69, 76),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  TextField(
-                    controller: imageController,
-                    decoration: const InputDecoration(
-                      labelText: "Bild URL",
-                      labelStyle: TextStyle(color: Colors.white),
-                      filled: true,
-                      fillColor: Color.fromARGB(255, 58, 69, 76),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  ElevatedButton(
-                    onPressed: addCustomExercise,
-                    child: const Text("Eigene Übung hinzufügen",
-                        style: TextStyle(color: Colors.white)),
-                  ),
-                ],
-              ),
->>>>>>> origin/main:lib/Screens/Pages/exercise_page.dart
             ),
             ListView.builder(
               shrinkWrap: true,

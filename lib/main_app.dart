@@ -1,8 +1,8 @@
+import 'package:fitlover_mvps/screens/Pages/workout_page.dart';
 import 'package:flutter/material.dart';
 import 'package:fitlover_mvps/buttons/bottom_navigation.dart';
-import 'package:fitlover_mvps/screens/exercise_page.dart';
-import 'package:fitlover_mvps/screens/settings_page.dart';
-import 'package:fitlover_mvps/screens/workout_page.dart';
+import 'package:fitlover_mvps/screens/Pages/exercise_page.dart';
+import 'package:fitlover_mvps/screens/Pages/settings_page.dart';
 import 'package:fitlover_mvps/screens/home_page.dart';
 import 'package:fitlover_mvps/screens/login/create_account_page.dart';
 

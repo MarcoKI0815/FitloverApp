@@ -1,6 +1,7 @@
+import 'package:fitlover_mvps/screens/login/create_account_page.dart';
 import 'package:flutter/material.dart';
 import 'package:fitlover_mvps/Data/database_repository.dart';
-import 'package:fitlover_mvps/Screens/Login_pages/create_account_page.dart';
+
 
 class MyApp extends StatelessWidget {
   final DatabaseRepository database;

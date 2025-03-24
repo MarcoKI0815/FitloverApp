@@ -3,95 +3,48 @@ import 'package:flutter/material.dart';
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2, // Anzahl der Tabs (z.B. Sprache und Passwort ändern)
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 30, 48, 87),
-          title: const Text('Einstellungen'),
-          bottom: const TabBar(
-            tabs: [
-              Tab(text: 'Sprache'),
-              Tab(text: 'Passwort ändern'),
-            ],
-          ),
-        ),
-        body: const TabBarView(
-          children: [
-            // Erster Tab: Spracheinstellungen
-            LanguageSettings(),
-            // Zweiter Tab: Passwort ändern
-            PasswordChange(),
-          ],
-        ),
-      ),
+  void _navigateTo(BuildContext context, String title) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text("Navigating to $title")),
     );
+    // Hier kannst du Navigator.push() verwenden, um zu echten Seiten zu navigieren.
   }
-}
-
-class LanguageSettings extends StatelessWidget {
-  const LanguageSettings({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Settings"),
+        backgroundColor: const Color.fromARGB(255, 10, 20, 46),
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(16.0),
         children: [
-          const Text(
-            'Wählen Sie eine Sprache:',
-            style: TextStyle(fontSize: 18),
-          ),
-          const SizedBox(height: 20),
-          DropdownButtonFormField<String>(
-            decoration: const InputDecoration(labelText: 'Sprache'),
-            items: const [
-              DropdownMenuItem(value: 'Deutsch', child: Text('Deutsch')),
-              DropdownMenuItem(value: 'Englisch', child: Text('Englisch')),
-              // Füge weitere Sprachen hinzu
-            ],
-            onChanged: (String? newValue) {
-              // Hier kannst du die Sprache ändern
-            },
-          ),
+          const Text("Account",
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white)),
+          const SizedBox(height: 10),
+          _buildSettingsItem(context, Icons.person, "Profile"),
+          _buildSettingsItem(context, Icons.lock, "Password"),
+          _buildSettingsItem(context, Icons.notifications, "Notifications"),
+          _buildSettingsItem(context, Icons.help, "Help & Support"),
+          _buildSettingsItem(context, Icons.mail, "Contact Us"),
+          _buildSettingsItem(context, Icons.privacy_tip, "Privacy Policy"),
+          _buildSettingsItem(context, Icons.star, "Rate & Review"),
+          _buildSettingsItem(context, Icons.info, "Help"),
         ],
       ),
     );
   }
-}
 
-class PasswordChange extends StatelessWidget {
-  const PasswordChange({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: [
-          const Text(
-            'Passwort ändern:',
-            style: TextStyle(fontSize: 18),
-          ),
-          const SizedBox(height: 20),
-          TextField(
-            obscureText: true,
-            decoration: const InputDecoration(
-              labelText: 'Neues Passwort',
-              hintText: 'Geben Sie Ihr neues Passwort ein',
-            ),
-          ),
-          const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              // Hier kannst du die Passwortänderung durchführen
-            },
-            child: const Text('Passwort ändern'),
-          ),
-        ],
-      ),
+  Widget _buildSettingsItem(BuildContext context, IconData icon, String title) {
+    return ListTile(
+      leading: Icon(icon, color: Colors.white),
+      title: Text(title, style: const TextStyle(color: Colors.white)),
+      trailing: const Icon(Icons.arrow_forward_ios, color: Colors.white),
+      onTap: () => _navigateTo(context, title),
     );
   }
 }

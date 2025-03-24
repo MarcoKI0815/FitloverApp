@@ -1,30 +1,24 @@
-<<<<<<< HEAD
+import 'package:fitlover_mvps/data/mockDatabase.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'screens/login/login_page.dart';
 import 'screens/login/create_account_page.dart';
-import 'screens/splash_page.dart';
+import 'screens/Pages/splash_page.dart';
 import 'main_app.dart';
-=======
-import 'package:fitlover_mvps/domain/workout.dart';
-import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:fitlover_mvps/Data/database_repository.dart';
-import 'package:fitlover_mvps/Data/mockDatabase.dart';
-import 'package:fitlover_mvps/Widgets/my_app.dart'; 
-
-
->>>>>>> origin/main
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
   // Entscheide, ob Mock- oder Firebase-Datenbank verwendet wird
-  final DatabaseRepository database;
+  final MockDatabaseRepository database =
+      MockDatabaseRepository(); // Replace with actual implementation
   bool useMock = true; // Setze auf false, um Firebase zu nutzen
 
-<<<<<<< HEAD
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -42,13 +36,3 @@ void main() async {
     );
   }
 }
-=======
-  database = MockDatabaseRepository(); 
-database.addWorkout(Workout("Bankdrücken", "assets/Bank.jpeg",
-        "Eine der besten Übungen für die Brustmuskulatur."));
-    
-
-  // Starte die App und übergebe den `database`-Parameter
-  runApp(MyApp(database: database)); // Übergabe des Parameters
-}
->>>>>>> origin/main
