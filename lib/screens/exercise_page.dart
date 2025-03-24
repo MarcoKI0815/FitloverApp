@@ -16,14 +16,49 @@ class ExercisesPage extends StatefulWidget {
 
 class ExercisesPageState extends State<ExercisesPage> {
   final List<Map<String, String>> exercises = [
-    {"name": "Bankdrücken", "image": "assets/Bank.jpeg"},
-    {"name": "Kniebeugen", "image": "assets/kmie.png"},
-    {"name": "Kreuzheben", "image": "assets/Kreuz.jpeg"},
-    {"name": "Schulterdrücken", "image": "assets/Schulter.jpeg"},
-    {"name": "Bizeps Curls", "image": "assets/Bizeps.jpeg"},
-    {"name": "Trizeps Dips", "image": "assets/dips.jpeg"},
-    {"name": "Klimmzüge", "image": "assets/Klimm.jpeg"},
-    {"name": "Beinpresse", "image": "assets/Bein.jpeg"}
+    {
+      "name": "Bankdrücken",
+      "image": "assets/Bank.jpeg",
+      "description": "Eine der besten Übungen für die Brustmuskulatur."
+    },
+    {
+      "name": "Kniebeugen",
+      "image": "assets/kmie.png",
+      "description":
+          "Eine grundlegende Übung für starke Beine und den unteren Rücken."
+    },
+    {
+      "name": "Kreuzheben",
+      "image": "assets/Kreuz.jpeg",
+      "description":
+          "Eine Ganzkörperübung, die besonders den unteren Rücken stärkt."
+    },
+    {
+      "name": "Schulterdrücken",
+      "image": "assets/Schulter.jpeg",
+      "description":
+          "Stärkt die Schultermuskulatur und verbessert die Stabilität."
+    },
+    {
+      "name": "Bizeps Curls",
+      "image": "assets/Bizeps.jpeg",
+      "description": "Isolierte Übung zur Stärkung des Bizeps."
+    },
+    {
+      "name": "Trizeps Dips",
+      "image": "assets/dips.jpeg",
+      "description": "Hervorragende Übung zur Kräftigung des Trizeps."
+    },
+    {
+      "name": "Klimmzüge",
+      "image": "assets/Klimm.jpeg",
+      "description": "Eine der besten Übungen für den Rücken und die Arme."
+    },
+    {
+      "name": "Beinpresse",
+      "image": "assets/Bein.jpeg",
+      "description": "Kräftigt die Beine und schont den unteren Rücken."
+    }
   ];
 
   final Set<String> favoriteExercises = {};
@@ -47,19 +82,45 @@ class ExercisesPageState extends State<ExercisesPage> {
         final customExercise = {
           'name': nameController.text,
           'image': imageController.text,
+          'description': "Benutzerdefinierte Übung ohne Beschreibung."
         };
         exercises.add(customExercise);
-        widget.onAddCustomExercise(customExercise); // Hinzufügen der benutzerdefinierten Übung
+        widget.onAddCustomExercise(customExercise);
       });
       nameController.clear();
       imageController.clear();
     }
   }
 
+  void showExerciseDescription(Map<String, String> exercise) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(exercise['name']!),
+          content:
+              Text(exercise['description'] ?? "Keine Beschreibung verfügbar."),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text(
+                "Schließen",
+                style: TextStyle(color: Color.fromARGB(255, 71, 175, 235)),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text("Exercises"),
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
@@ -70,39 +131,9 @@ class ExercisesPageState extends State<ExercisesPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Formular für eigene Übung hinzufügen
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  TextField(
-                    controller: nameController,
-                    decoration: const InputDecoration(
-                      labelText: "Übung Name",
-                      labelStyle: TextStyle(color: Colors.white),
-                      filled: true,
-                      fillColor: Colors.blueGrey,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  TextField(
-                    controller: imageController,
-                    decoration: const InputDecoration(
-                      labelText: "Bild URL",
-                      labelStyle: TextStyle(color: Colors.white),
-                      filled: true,
-                      fillColor: Colors.blueGrey,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  ElevatedButton(
-                    onPressed: addCustomExercise,
-                    child: const Text("Eigene Übung hinzufügen"),
-                  ),
-                ],
-              ),
             ),
-            // Liste der Übungen
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -111,9 +142,11 @@ class ExercisesPageState extends State<ExercisesPage> {
                 final exercise = exercises[index];
                 final isFavorite = favoriteExercises.contains(exercise['name']);
                 return Card(
-                  margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                  color: Colors.blueGrey[800],
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  color: Color.fromARGB(255, 71, 175, 235),
                   child: ListTile(
                     contentPadding: const EdgeInsets.all(8),
                     leading: Image.asset(
@@ -133,6 +166,7 @@ class ExercisesPageState extends State<ExercisesPage> {
                       ),
                       onPressed: () => toggleFavorite(exercise),
                     ),
+                    onTap: () => showExerciseDescription(exercise),
                   ),
                 );
               },

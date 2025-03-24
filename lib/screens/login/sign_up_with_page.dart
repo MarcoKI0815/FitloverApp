@@ -1,6 +1,6 @@
+import 'package:fitlover_mvps/screens/login/create_account_page.dart';
+import 'package:fitlover_mvps/screens/login/login_page.dart';
 import 'package:flutter/material.dart';
-import 'package:fitlover_mvps/Screens/Login_pages/login_page.dart';
-import 'package:fitlover_mvps/Screens/Login_pages/create_account_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -13,7 +13,10 @@ class WelcomeScreen extends StatelessWidget {
   Future<void> signInWithApple() async {
     try {
       final appleCredential = await SignInWithApple.getAppleIDCredential(
-        scopes: [AppleIDAuthorizationScopes.email, AppleIDAuthorizationScopes.fullName],
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName
+        ],
       );
 
       final oauthCredential = OAuthProvider("apple.com").credential(
@@ -33,7 +36,8 @@ class WelcomeScreen extends StatelessWidget {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
       if (googleUser == null) return; // Abbruch, falls User den Login abbricht
 
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
@@ -50,7 +54,8 @@ class WelcomeScreen extends StatelessWidget {
     try {
       final LoginResult result = await FacebookAuth.instance.login();
       if (result.status == LoginStatus.success) {
-        final OAuthCredential credential = FacebookAuthProvider.credential(result.accessToken!.token);
+        final OAuthCredential credential =
+            FacebookAuthProvider.credential(result.accessToken!.tokenString);
         await FirebaseAuth.instance.signInWithCredential(credential);
       } else {
         debugPrint("Facebook Sign-In abgebrochen");
@@ -64,25 +69,29 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Welcome"),
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Navigator.canPop(context) ? const BackButton() : null,
       ),
-      backgroundColor: const Color(0xFF102E69),
+      backgroundColor: const Color.fromARGB(255, 30, 48, 87),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            Image.asset(
+              'assets/FitLoverIcon.jpg',
+              fit: BoxFit.cover,
+            ),
             const Text(
-              "Welcome",
+              "Welcome to FitLover",
               style: TextStyle(
-                fontSize: 32,
+                color: Color.fromARGB(255, 71, 175, 235),
+                fontSize: 30,
+                fontStyle: FontStyle.italic,
                 fontWeight: FontWeight.bold,
-                color: Colors.lightBlueAccent,
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 15),
             buildSocialButton(
               icon: Icons.apple,
               text: "Continue with Apple",

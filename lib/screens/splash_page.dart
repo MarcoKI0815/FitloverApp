@@ -1,7 +1,6 @@
-import 'package:fitlover_mvps/Screens/Login_pages/sign_up_with_page.dart';
+import 'package:fitlover_mvps/screens/login/sign_up_with_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -24,12 +23,13 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 30, 48, 87),
       body: Stack(
         fit: StackFit.expand,
         children: [
           Image.asset(
-            'assets/5555.png', // Hintergrundbild für den Splash-Screen
-            fit: BoxFit.cover,
+            'assets/SplashScreenFitlover.png', // Hintergrundbild für den Splash-Screen
+            fit: BoxFit.none,
           ),
         ],
       ),

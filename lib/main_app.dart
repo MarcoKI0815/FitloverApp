@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:fitlover_mvps/Bottons/bottom_navigation.dart';
-import 'package:fitlover_mvps/Screens/Pages/exercise_page.dart';
-import 'package:fitlover_mvps/Screens/Pages/home_page.dart';
-import 'package:fitlover_mvps/Screens/Pages/settings_page.dart';
-import 'package:fitlover_mvps/Screens/Pages/workout_page.dart';
+import 'package:fitlover_mvps/buttons/bottom_navigation.dart';
+import 'package:fitlover_mvps/screens/exercise_page.dart';
+import 'package:fitlover_mvps/screens/settings_page.dart';
+import 'package:fitlover_mvps/screens/workout_page.dart';
+import 'package:fitlover_mvps/screens/home_page.dart';
+import 'package:fitlover_mvps/screens/login/create_account_page.dart';
 
 class MainApp extends StatefulWidget {
   const MainApp({super.key});
@@ -24,9 +25,13 @@ class MainAppState extends State<MainApp> {
       const HomePage(),
       ExercisesPage(
         onFavoriteToggle: updateFavorites,
-        onAddCustomExercise: addCustomExercise, // Hinzufügen von eigenen Übungen
+        onAddCustomExercise:
+            addCustomExercise, // Hinzufügen von eigenen Übungen
       ),
-      WorkoutPage(favoriteExercises: favoriteExercises, onWorkoutComplete: () {  },), // Übergabe der Favoriten
+      WorkoutPage(
+        favoriteExercises: favoriteExercises,
+        onWorkoutComplete: () {},
+      ), // Übergabe der Favoriten
       const SettingsPage(),
     ];
   }
@@ -45,7 +50,8 @@ class MainAppState extends State<MainApp> {
   // Eigene Übung hinzufügen
   void addCustomExercise(Map<String, String> exercise) {
     setState(() {
-      favoriteExercises.add(exercise); // Benutzerdefinierte Übung zu den Favoriten hinzufügen
+      favoriteExercises.add(
+          exercise); // Benutzerdefinierte Übung zu den Favoriten hinzufügen
     });
   }
 
@@ -63,6 +69,20 @@ class MainAppState extends State<MainApp> {
         currentIndex: selectedIndex,
         onTap: onItemTapped,
       ),
+    );
+  }
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'FitLover',
+      theme: ThemeData.dark(),
+      home: const SignUpScreen(),
     );
   }
 }

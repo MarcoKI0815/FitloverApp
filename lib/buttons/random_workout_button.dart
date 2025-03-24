@@ -1,9 +1,17 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:fitlover_mvps/Screens/Pages/workout_page.dart';
+import 'package:fitlover_mvps/screens/workout_page.dart';
 
-class RandomWorkoutButton extends StatelessWidget {
+class RandomWorkoutButton extends StatefulWidget {
   const RandomWorkoutButton({super.key});
+
+  @override
+  _RandomWorkoutButtonState createState() => _RandomWorkoutButtonState();
+}
+
+class _RandomWorkoutButtonState extends State<RandomWorkoutButton> {
+  String selectedFocus = "Ganzkörper";
+  String selectedLevel = "Anfänger";
 
   List<Map<String, String>> generateRandomWorkout(String focus, String level) {
     Map<String, List<Map<String, String>>> categorizedExercises = {
@@ -53,8 +61,6 @@ class RandomWorkoutButton extends StatelessWidget {
         showDialog(
           context: context,
           builder: (context) {
-            String selectedFocus = "Ganzkörper";
-            String selectedLevel = "Anfänger";
             return AlertDialog(
               title: const Text("Workout Einstellungen"),
               content: Column(
@@ -70,7 +76,9 @@ class RandomWorkoutButton extends StatelessWidget {
                       );
                     }).toList(),
                     onChanged: (newValue) {
-                      selectedFocus = newValue!;
+                      setState(() {
+                        selectedFocus = newValue!;
+                      });
                     },
                   ),
                   DropdownButton<String>(
@@ -83,13 +91,17 @@ class RandomWorkoutButton extends StatelessWidget {
                       );
                     }).toList(),
                     onChanged: (newValue) {
-                      selectedLevel = newValue!;
+                      setState(() {
+                        selectedLevel = newValue!;
+                      });
                     },
                   ),
                 ],
               ),
               actions: [
                 TextButton(
+                  style: TextButton.styleFrom(
+                      foregroundColor: Color.fromARGB(255, 71, 175, 235)),
                   onPressed: () {
                     Navigator.pop(context);
                     Navigator.push(
@@ -105,14 +117,19 @@ class RandomWorkoutButton extends StatelessWidget {
                       ),
                     );
                   },
-                  child: const Text("Starten"),
+                  child: const Text("Starten",
+                      style:
+                          TextStyle(color: Color.fromARGB(255, 71, 175, 235))),
                 ),
               ],
             );
           },
         );
       },
-      child: const Text("Zufälliges Workout starten"),
+      child: const Text(
+        "Zufälliges Workout starten",
+        style: TextStyle(color: Colors.white),
+      ),
     );
   }
 }

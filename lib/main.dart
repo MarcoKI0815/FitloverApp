@@ -1,14 +1,12 @@
-import 'package:fitlover_mvps/Screens/Login_pages/login_page.dart';
 import 'package:flutter/material.dart';
-import 'Screens/Login_pages/create_account_page.dart';
-import 'package:fitlover_mvps/Screens/Pages/splash_page.dart';
-import 'package:fitlover_mvps/main_app.dart';
 import 'package:firebase_core/firebase_core.dart';
-
-
+import 'screens/login/login_page.dart';
+import 'screens/login/create_account_page.dart';
+import 'screens/splash_page.dart';
+import 'main_app.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // Stellt sicher, dass Firebase korrekt initialisiert wird
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const FitLoverApp());
 }
@@ -21,30 +19,15 @@ class FitLoverApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: const Color(0xFF102E69),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 10, 20, 46),
       ),
-      initialRoute: '/', // Initial route for app launch
+      initialRoute: '/', // Startpunkt der App
       routes: {
-        '/': (context) => const SplashScreen(), // Initial splash screen
-        '/signup': (context) => const SignUpScreen(),
-        '/login': (context) => const LoginPage(),
-        '/home': (context) => const MainApp(), // Home page after login
+        '/': (context) => const SplashScreen(), // Splash Screen
+        '/signup': (context) => const SignUpScreen(), // Registrierungsseite
+        '/login': (context) => const LoginPage(), // Login-Seite
+        '/home': (context) => const MainApp(), // Hauptseite nach Login
       },
-    );
-  }
-}
-
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'FitLover',
-      theme: ThemeData.dark(),
-      home: const SignUpScreen(),
     );
   }
 }
