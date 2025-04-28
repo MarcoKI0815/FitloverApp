@@ -1,38 +1,53 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fitlover_mvps/Data/database_repository.dart';
 import 'package:fitlover_mvps/domain/workout.dart';
 
-class MockDatabaseRepository extends DatabaseRepository {
-  List<Workout> workoutList = [
-    Workout("Bankdrücken", "assets/Bank.jpeg",
-        "Eine der besten Übungen für die Brustmuskulatur."),
-    Workout("Kniebeugen", "assets/kmie.png",
-        "Eine grundlegende Übung für starke Beine und den unteren Rücken."),
-    Workout("Kreuzheben", "assets/Kreuz.jpeg",
-        "Eine Ganzkörperübung, die besonders den unteren Rücken stärkt."),
-    Workout("Schulterdrücken", "assets/Schulter.jpeg",
-        "Stärkt die Schultermuskulatur und verbessert die Stabilität."),
-    Workout("Bizeps Curls", "assets/Bizeps.jpeg",
-        "Isolierte Übung zur Stärkung des Bizeps."),
-    Workout("Trizeps Dips", "assets/dips.jpeg",
-        "Hervorragende Übung zur Kräftigung des Trizeps."),
-    Workout("Klimmzüge", "assets/Klimm.jpeg",
-        "Eine der besten Übungen für den Rücken und die Arme."),
-    Workout("Beinpresse", "assets/Bein.jpeg",
-        "Kräftigt die Beine und schont den unteren Rücken."),
-  ];
-  @override
-  void addWorkout(Workout workout) {
-    workoutList.add(workout );
+class FirestoreDatabaseRepository extends DatabaseRepository {
+  final CollectionReference _workoutsCollection =
+      FirebaseFirestore.instance.collection('workouts');
 
+  @override
+  Future<void> addWorkout(Workout workout) async {
+    try {
+      await _workoutsCollection.add({
+        'title': workout.title,
+        'image': workout.image,
+        'description': workout.description,
+      });
+    } catch (e) {
+      throw Exception("Error adding workout: $e");
+    }
   }
 
   @override
-  void deletWorkout(Workout workout) {
-    workoutList.remove(workout);
+  Future<void> deletWorkout(Workout workout) async {
+    try {
+      final snapshot = await _workoutsCollection
+          .where('title', isEqualTo: workout.title)
+          .get();
+      for (var doc in snapshot.docs) {
+        await doc.reference.delete();
+      }
+    } catch (e) {
+      throw Exception("Error deleting workout: $e");
+    }
   }
 
   @override
-  List<Workout> getWorkoutList() {
-    return workoutList;
+  Future<List<Workout>> getWorkoutList() async {
+    try {
+      final snapshot = await _workoutsCollection.get();
+      return snapshot.docs.map((doc) {
+        return Workout(
+          '',
+          title: doc['title'],
+          image: doc['image'],
+          description: doc['description'],
+          name: '', 
+        );
+      }).toList();
+    } catch (e) {
+      throw Exception("Error fetching workouts: $e");
+    }
   }
 }

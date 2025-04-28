@@ -1,18 +1,8 @@
 import 'package:fitlover_mvps/domain/workout.dart';
 
 abstract class DatabaseRepository {
-  void addWorkout ( Workout workout);// Methode Zum Hinzufügen eines Workouts in die datenbank
+  Future<void> addWorkout(Workout workout); // Methode zum Hinzufügen eines Workouts asynchron
   
-  List<Workout> getWorkoutList(); // Methode zum Aufrufen der Liste Von Workouts 
-  void deletWorkout (Workout workout); // Methode Zum Löschen eines Workouts 
-
+  Future<List<Workout>> getWorkoutList(); // Methode zum Aufrufen der Liste von Workouts asynchron
+  Future<void> deletWorkout(Workout workout); // Methode zum Löschen eines Workouts asynchron
 }
-
-
-
-
-
-
-/*Wann benutzt man void und wann einen Datentyp?
-:weißes_häkchen: void → Wenn die Funktion nichts zurückgibt, sondern nur etwas ausführt, z. B. eine Aktion wie Drucken oder Setzen eines Werts.
-:weißes_häkchen: Datentyp (z. B. int, String, bool, List<T>) → Wenn die Funktion einen Wert zurückgibt, den du weiterverwenden willst.*/
