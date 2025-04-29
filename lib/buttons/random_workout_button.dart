@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:fitlover_mvps/screens/Pages/workout_page.dart';
+import 'package:fitlover_mvps/screen/pages/workout_page.dart';
 import 'package:flutter/material.dart';
 
 class RandomWorkoutButton extends StatefulWidget {

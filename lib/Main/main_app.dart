@@ -1,10 +1,11 @@
-import 'package:fitlover_mvps/screens/Pages/workout_page.dart';
+import 'package:fitlover_mvps/screen/home_page.dart';
+import 'package:fitlover_mvps/screen/login/create_account_page.dart';
+import 'package:fitlover_mvps/screen/pages/exercise_page.dart';
+import 'package:fitlover_mvps/screen/pages/settings_page.dart';
+import 'package:fitlover_mvps/screen/pages/workout_page.dart';
 import 'package:flutter/material.dart';
 import 'package:fitlover_mvps/buttons/bottom_navigation.dart';
-import 'package:fitlover_mvps/screens/Pages/exercise_page.dart';
-import 'package:fitlover_mvps/screens/Pages/settings_page.dart';
-import 'package:fitlover_mvps/screens/home_page.dart';
-import 'package:fitlover_mvps/screens/login/create_account_page.dart';
+
 
 class MainApp extends StatefulWidget {
   const MainApp({super.key});

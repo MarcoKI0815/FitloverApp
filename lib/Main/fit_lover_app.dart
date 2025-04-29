@@ -1,7 +1,7 @@
-import 'package:fitlover_mvps/Main/main_app.dart';
-import 'package:fitlover_mvps/screens/login/create_account_page.dart';
-import 'package:fitlover_mvps/screens/login/login_page.dart';
-import 'package:fitlover_mvps/screens/Pages/splash_page.dart';
+import 'package:fitlover_mvps/main/main_app.dart';
+import 'package:fitlover_mvps/screen/login/create_account_page.dart';
+import 'package:fitlover_mvps/screen/login/login_page.dart';
+import 'package:fitlover_mvps/screen/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 
 class FitLoverApp extends StatelessWidget {

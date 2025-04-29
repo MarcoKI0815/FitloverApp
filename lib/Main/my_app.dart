@@ -1,4 +1,4 @@
-import 'package:fitlover_mvps/screens/login/create_account_page.dart';
+import 'package:fitlover_mvps/screen/login/create_account_page.dart';
 import 'package:flutter/material.dart';
 
 

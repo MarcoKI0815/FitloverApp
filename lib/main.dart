@@ -1,19 +1,22 @@
-import 'package:fitlover_mvps/data/mockDatabase.dart';
+import 'package:fitlover_mvps/data/app_theme.dart';
+import 'package:fitlover_mvps/screen/login/create_account_page.dart';
+import 'package:fitlover_mvps/screen/login/login_page.dart';
+import 'package:fitlover_mvps/screen/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'screens/login/login_page.dart';
-import 'screens/login/create_account_page.dart';
-import 'screens/Pages/splash_page.dart';
-import 'Main/main_app.dart';
+import 'main/main_app.dart';
+import 'data/firestoreDatabaseRepository.dart';
+
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
   // Entscheide, ob Mock- oder Firebase-Datenbank verwendet wird
-  final MockDatabaseRepository database =
-      MockDatabaseRepository(); // Replace with actual implementation
-  bool useMock = true; // Setze auf false, um Firebase zu nutzen
+  final FirestoreDatabaseRepository database =
+      FirestoreDatabaseRepository(); // Replace with actual implementation
+  bool useMock = false; // Setze auf false, um Firebase zu nutzen
 
   runApp(MyApp());
 }
@@ -25,9 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: const Color.fromARGB(255, 10, 20, 46),
-      ),
+      theme: fitLoverTheme,
       initialRoute: '/', // Startpunkt der App
       routes: {
         '/': (context) => const SplashScreen(), // Splash Screen
