@@ -1,3 +1,3 @@
 # fitlover_mvps
 
-A new Flutter project.
+Eine Fitness App die sich nur auf die wichtigsten punkte wie excersice beschänkt.
